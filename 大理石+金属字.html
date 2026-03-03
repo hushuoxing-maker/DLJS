@@ -2,76 +2,100 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>古月AI智能体 · 大理石+金属字门头灵感库 4.0（双语版）</title>
+<title>古月AI智能体 · 大理石+金属字门头灵感库 5.0 旗舰版</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft YaHei",sans-serif;}
+
 body{
-  background:linear-gradient(135deg,#F3F4F6,#F9FAFB);
-  padding:20px 0 60px;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(0,150,255,0.15), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(140,0,255,0.15), transparent 40%),
+    linear-gradient(135deg,#0B1020,#0F172A,#1E1B4B);
+  color:#E5E7EB;
+  padding:30px 0 60px;
 }
+
 .header{
-  background:linear-gradient(90deg,#111827,#1F2937);
-  color:#fff;
   text-align:center;
-  padding:40px 20px;
-  margin-bottom:30px;
+  padding:50px 20px;
 }
+.header h1{
+  font-size:28px;
+  background:linear-gradient(90deg,#38BDF8,#A855F7,#38BDF8);
+  background-size:200% auto;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:shine 6s linear infinite;
+}
+@keyframes shine{to{background-position:200% center;}}
+
 .wrap{
   max-width:1000px;
-  margin:0 auto 30px;
-  background:#fff;
+  margin:0 auto 40px;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(20px);
   padding:30px;
   border-radius:16px;
-  box-shadow:0 6px 20px rgba(0,0,0,0.05);
+  border:1px solid rgba(255,255,255,0.1);
 }
+
 input,select{
   width:100%;
   padding:12px;
   margin-bottom:15px;
-  border:1px solid #ddd;
   border-radius:8px;
+  border:1px solid rgba(255,255,255,0.2);
+  background:rgba(255,255,255,0.08);
+  color:#fff;
 }
+
 button{
   padding:10px 14px;
   border:none;
   border-radius:8px;
   cursor:pointer;
+  transition:0.3s;
 }
+
 .gen-btn{
   width:100%;
-  background:#111827;
+  background:linear-gradient(90deg,#2563EB,#9333EA);
   color:#fff;
+  box-shadow:0 0 20px rgba(147,51,234,0.6);
 }
-.result{
-  max-width:1300px;
-  margin:0 auto;
-}
+.gen-btn:hover{transform:translateY(-2px);}
+
+.result{max-width:1300px;margin:0 auto;}
 .item{
-  background:#fff;
-  padding:18px;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(15px);
+  padding:20px;
   margin-bottom:18px;
-  border-radius:12px;
-  box-shadow:0 2px 12px rgba(0,0,0,0.06);
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.1);
 }
+
 .row{display:flex;gap:20px;}
 .col{flex:1;}
 .text{font-size:13px;line-height:1.7;}
+
 .copy-btn{
   margin-top:8px;
-  background:#111827;
+  background:linear-gradient(90deg,#06B6D4,#3B82F6);
   color:#fff;
   font-size:12px;
 }
 .copy-btn.copied{
-  background:#ccc !important;
-  color:#666 !important;
+  background:#444 !important;
+  color:#888 !important;
   cursor:default;
 }
+
 .copy-all{
   display:block;
   margin:25px auto;
-  background:#111827;
+  background:linear-gradient(90deg,#2563EB,#9333EA);
   color:#fff;
 }
 </style>
@@ -80,19 +104,21 @@ button{
 <body>
 
 <div class="header">
-<h1>古月AI智能体 · 大理石+金属字门头灵感库 4.0（双语版）</h1>
+<h1>古月AI智能体 · 大理石+金属字门头灵感库 5.0 旗舰版</h1>
 </div>
 
 <div class="wrap">
 
-<input id="industry" placeholder="请输入行业，例如：高端餐饮、珠宝、民宿">
+<input id="brand" placeholder="输入品牌名称">
+<input id="industry" placeholder="输入行业，例如：高端餐饮、珠宝、民宿">
 
 <select id="scene">
 <option value="白天自然光环境">白天自然光环境</option>
 <option value="夜景灯光环境">夜景灯光环境</option>
+<option value="雨后街区氛围">雨后街区氛围</option>
 </select>
 
-<button class="gen-btn" onclick="generate()">🚀 生成20组完全不同提示词</button>
+<button class="gen-btn" onclick="generate()">🚀 生成20组旗舰级提示词</button>
 
 </div>
 
@@ -100,20 +126,29 @@ button{
 
 <script>
 
-const scales=["小型精致店铺","标准中型商业店铺","大型旗舰店立面"];
-const environments=["商业街区独栋建筑","城市主干道沿街立面","商场外立面界面","高端社区底商空间"];
+const scales=["小型精致店铺","标准中型商业空间","大型城市旗舰店","双层挑高门头","横向超长立面"];
+const environments=["商业街区独栋","商场外立面界面","高端社区底商","城市主干道沿街建筑"];
 const materials=["天然大理石干挂","奢石拼接立面","深色石材整体包覆","浅色石材与金属嵌合结构"];
-const metals=["拉丝不锈钢立体字","黄铜质感金属字","黑钛金属字","背发光立体金属字"];
-const angles=["正面平视视角","轻微仰视视角","建筑正立面无透视畸变","标准商业效果图视角"];
-const lighting=["洗墙灯光系统","线性隐藏灯带","轮廓光勾边系统","重点标识背光系统"];
+const metals=["拉丝不锈钢立体字","黄铜金属字","黑钛金属字","背发光立体金属字"];
+const lenses=["35mm镜头","50mm标准镜头","85mm建筑摄影镜头"];
+const photo=["HDR高动态范围","超清建筑摄影","电影级光影质感","商业广告级写实渲染"];
 
-function r(arr){return arr[Math.floor(Math.random()*arr.length)];}
+function r(a){return a[Math.floor(Math.random()*a.length)];}
+
+function buildPrompt(brand,industry,scene){
+
+let zh=`${scene}下，${brand}${industry}门头设计方案，${r(scales)}，位于${r(environments)}，完整展示店铺正立面无遮挡，立面主材采用${r(materials)}，品牌标识为${r(metals)}，强调比例与建筑秩序，${r(lenses)}拍摄，${r(photo)}，8K超清效果图`;
+
+let en=`Under ${scene}, facade concept for ${brand} ${industry}, ${r(scales)} scale, located within ${r(environments)}, full front elevation completely visible, finished with ${r(materials)}, signage crafted in ${r(metals)}, emphasizing architectural proportion and order, shot using ${r(lenses)}, ${r(photo)}, ultra-realistic 8K render`;
+
+return {zh,en};
+}
 
 function generate(){
 
+let brand=document.getElementById("brand").value.trim()||"某品牌";
 let industry=document.getElementById("industry").value.trim();
 if(!industry){alert("请输入行业");return;}
-
 let scene=document.getElementById("scene").value;
 
 let result=document.getElementById("result");
@@ -122,14 +157,10 @@ let used=new Set();
 let all=[];
 
 while(all.length<20){
-
-let zh=`${scene}，${r(scales)}，${industry}店铺门头设计，${r(environments)}，${r(angles)}，完整展示店铺正立面无遮挡无裁切，主立面采用${r(materials)}，品牌标识为${r(metals)}，结合${r(lighting)}，高端商业建筑效果图，8K超清写实渲染`;
-
-let en=`${scene}, ${r(scales)}, ${industry} storefront facade design, located in ${r(environments)}, ${r(angles)}, full front elevation completely visible without obstruction, primary facade finished with ${r(materials)}, signage crafted in ${r(metals)}, integrated ${r(lighting)}, premium commercial architectural visualization, ultra-realistic 8K render`;
-
-if(!used.has(zh)){
-used.add(zh);
-all.push({zh,en});
+let p=buildPrompt(brand,industry,scene);
+if(!used.has(p.zh)){
+used.add(p.zh);
+all.push(p);
 }
 }
 
@@ -156,7 +187,6 @@ html+=`<button class="copy-all" onclick="copyAll()">📋 一键复制全部</but
 result.innerHTML=html;
 
 window.allPrompts=all;
-
 }
 
 function copyText(text,btn){
@@ -173,7 +203,6 @@ t+=`${i+1}. ${p.zh}\n${p.en}\n\n`;
 });
 navigator.clipboard.writeText(t).then(()=>alert("已复制全部"));
 }
-
 </script>
 </body>
 </html>
