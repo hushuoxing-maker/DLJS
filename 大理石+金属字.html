@@ -2,107 +2,95 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>古月ai智能体·理石+金属字门头门头灵感库（双语版）</title>
+<title>古月·大理石+金属字门头提示词生成器 2.0</title>
 
 <style>
-*{
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: "Microsoft YaHei", sans-serif;
-}
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft YaHei",sans-serif;}
 body{
-  background: linear-gradient(135deg, #F5F5F5 0%, #F8F9FA 100%);
-  min-height: 100vh;
-  padding: 20px 0 60px;
+  background:linear-gradient(135deg,#F3F4F6,#F9FAFB);
+  padding:20px 0 60px;
 }
 .header{
-  width: 100%;
-  background: linear-gradient(90deg, #0F172A, #1E293B);
-  color: #fff;
-  text-align: center;
-  padding: 40px 20px;
-  margin-bottom: 30px;
-  border-radius: 0 0 16px 16px;
+  background:linear-gradient(90deg,#0F172A,#1E293B);
+  color:#fff;
+  text-align:center;
+  padding:40px 20px;
+  margin-bottom:30px;
+  border-radius:0 0 16px 16px;
 }
-.header h1{
-  font-size: 26px;
+.header h1{font-size:26px;}
+
+.wrap{
+  max-width:1000px;
+  margin:0 auto 30px;
+  background:#fff;
+  padding:30px;
+  border-radius:16px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.05);
 }
-.input-wrap{
-  max-width: 900px;
-  margin: 0 auto 30px;
-  background: #fff;
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+
+input,select{
+  width:100%;
+  padding:12px;
+  margin-bottom:15px;
+  border:1px solid #E5E7EB;
+  border-radius:8px;
+  font-size:14px;
 }
-.input-box{
-  width: 100%;
-  padding: 14px 18px;
-  font-size: 16px;
-  border: 1px solid #E5E7EB;
-  border-radius: 8px;
-  margin-bottom: 20px;
+
+button{
+  padding:12px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
 }
+
 .gen-btn{
-  width: 100%;
-  padding: 14px;
-  background: #0F172A;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
+  width:100%;
+  background:#0F172A;
+  color:#fff;
+  font-size:15px;
 }
+
 .result-wrap{
-  max-width: 1100px;
-  margin: 0 auto;
+  max-width:1200px;
+  margin:0 auto;
 }
+
 .result-item{
-  background: #fff;
-  padding: 18px;
-  border-radius: 12px;
-  margin-bottom: 14px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  background:#fff;
+  padding:18px;
+  margin-bottom:14px;
+  border-radius:12px;
+  box-shadow:0 2px 10px rgba(0,0,0,0.05);
 }
-.row{
-  display: flex;
-  gap: 20px;
-}
-.col{
-  flex: 1;
-  position: relative;
-}
+
+.row{display:flex;gap:20px;}
+.col{flex:1;}
+
 .text{
-  font-size: 14px;
-  line-height: 1.6;
-  color: #374151;
+  font-size:13px;
+  line-height:1.6;
+  color:#374151;
 }
+
 .copy-btn{
-  margin-top: 8px;
-  padding: 6px 10px;
-  font-size: 12px;
-  background: #0F172A;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+  margin-top:8px;
+  background:#0F172A;
+  color:#fff;
+  font-size:12px;
 }
 .copy-btn.copied{
-  background: #CCCCCC !important;
-  color: #666 !important;
-  cursor: default !important;
+  background:#ccc !important;
+  color:#666 !important;
+  cursor:default !important;
 }
-.copy-all-btn{
-  display: block;
-  margin: 25px auto;
-  padding: 12px 24px;
-  background: #0F172A;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 15px;
-  cursor: pointer;
+
+.copy-all{
+  display:block;
+  margin:25px auto;
+  background:#0F172A;
+  color:#fff;
 }
 </style>
 </head>
@@ -110,104 +98,126 @@ body{
 <body>
 
 <div class="header">
-  <h1>🪨 古月ai智能体·理石+金属字门头门头灵感库（双语版）</h1>
+<h1>🪨 古月·大理石+金属字门头提示词生成器 2.0</h1>
 </div>
 
-<div class="input-wrap">
-  <input type="text" class="input-box" id="industryInput" placeholder="请输入行业类型，例如：高端餐饮、珠宝首饰、商务会所">
-  <button class="gen-btn" onclick="generatePrompts()">🚀 生成20组中英文提示词</button>
+<div class="wrap">
+
+<input id="industry" placeholder="请输入行业，例如：高端餐饮、珠宝、商务会所">
+
+<select id="size">
+<option value="小型街边店铺">小型街边店铺</option>
+<option value="中型沿街门店">中型沿街门店</option>
+<option value="大型旗舰店">大型旗舰店</option>
+<option value="商业综合体主入口">商业综合体主入口</option>
+</select>
+
+<select id="scene">
+<option value="白天自然光">白天自然光</option>
+<option value="夜景灯光效果">夜景灯光效果</option>
+</select>
+
+<select id="stoneColor">
+<option value="浅灰色大理石">浅灰色大理石</option>
+<option value="深灰色大理石">深灰色大理石</option>
+<option value="黑色大理石">黑色大理石</option>
+<option value="米色大理石">米色大理石</option>
+</select>
+
+<button class="gen-btn" onclick="generate()">🚀 生成20组中英文提示词</button>
+
 </div>
 
-<div class="result-wrap" id="resultWrap"></div>
+<div class="result-wrap" id="results"></div>
 
 <script>
 
-const stylesCN=["高端简约风格","大气稳重风格","高级质感风格","现代极简风格","商务沉稳风格"];
-const stylesEN=["High-end minimalist style","Grand and steady style","Premium texture style","Modern minimalist style","Business calm style"];
+const metalCN=["拉丝不锈钢字","黄铜金属字","黑钛金属字","镜面不锈钢字"];
+const metalEN=["Brushed stainless letters","Brass metal letters","Black titanium letters","Mirror stainless letters"];
 
-const materialsCN=["天然大理石","石材干挂系统","拉丝不锈钢金属字","黄铜立体字","黑钛金属字"];
-const materialsEN=["Natural marble","Stone cladding system","Brushed stainless steel letters","Brass 3D letters","Black titanium letters"];
+const lightingCN=["洗墙灯设计","背光氛围灯","隐藏灯带","顶部射灯"];
+const lightingEN=["Wall washer lighting","Backlit ambient light","Hidden LED strip","Top spotlights"];
 
-const lightingCN=["日间自然光照","柔和洗墙灯效果","背光氛围灯设计","顶部隐藏灯带","侧向投射灯光"];
-const lightingEN=["Daytime natural lighting","Soft wall washer lighting","Backlit ambient lighting","Hidden top light strip","Side projection lighting"];
+const styleCN=["高端稳重风格","现代极简风格","商务沉稳风格","奢雅质感风格"];
+const styleEN=["Premium steady style","Modern minimalist style","Business calm style","Luxury elegant style"];
 
-const slogansCN=["主营品类+高端质感标语","特色品类+稳重大气文字","招牌项目+精致高级标语","核心产品+高级视觉表达","品牌定位+大气形象标语"];
-const slogansEN=["Main category + premium slogan","Specialty category + grand text","Signature project + refined slogan","Core product + premium expression","Brand positioning + grand slogan"];
+const sloganCN=["主营品类+高端质感标语","核心产品+品牌表达","招牌项目+精致文字","品牌定位+大气视觉"];
+const sloganEN=["Main category + premium slogan","Core product + brand expression","Signature project + refined text","Brand positioning + grand visual"];
 
-function pickRandom(arr){
-  return arr[Math.floor(Math.random()*arr.length)];
+function r(arr){return arr[Math.floor(Math.random()*arr.length)];}
+
+function createPrompt(industry,size,scene,color){
+
+const cn=`${scene}，门头正立面完全展示，正面平视无遮挡，${size}，${industry}店铺门头设计，${color}搭配${r(metalCN)}，${r(styleCN)}，${r(lightingCN)}，品牌名称清晰立体，${r(sloganCN)}，8K高清写实效果图，可直接施工参考`;
+
+const en=`${scene==="白天自然光"?"Daytime natural lighting":"Night scene lighting effect"}, front facade fully displayed, eye-level unobstructed view, ${size}, ${industry} storefront design, ${color} combined with ${r(metalEN)}, ${r(styleEN)}, ${r(lightingEN)}, clear 3D brand signage, ${r(sloganEN)}, 8K ultra HD realistic render, construction-ready reference`;
+
+return {cn,en};
 }
 
-function createPrompt(industry){
-  const cn = `白天自然光，门头正立面完全展示，正面平视无遮挡，${industry}店铺门头设计，${pickRandom(materialsCN)}搭配${pickRandom(materialsCN)}，${pickRandom(stylesCN)}，${pickRandom(lightingCN)}，品牌名称清晰立体，${pickRandom(slogansCN)}，8K高清写实效果图，可直接施工参考`;
-  
-  const en = `Daytime natural light, front facade fully displayed, eye-level view, unobstructed, ${industry} storefront design, ${pickRandom(materialsEN)} combined with ${pickRandom(materialsEN)}, ${pickRandom(stylesEN)}, ${pickRandom(lightingEN)}, clear 3D brand signage, ${pickRandom(slogansEN)}, 8K ultra HD realistic render, construction-ready reference`;
+let all=[];
 
-  return {cn,en};
-}
-
-function copyText(text,btn){
-  navigator.clipboard.writeText(text).then(()=>{
-    btn.classList.add("copied");
-    btn.innerText="已复制";
-  });
+function copy(text,btn){
+navigator.clipboard.writeText(text).then(()=>{
+btn.classList.add("copied");
+btn.innerText="已复制";
+});
 }
 
 function copyAll(){
-  let fullText="";
-  allPrompts.forEach((p,i)=>{
-    fullText+=`${i+1}. ${p.cn}\n${p.en}\n\n`;
-  });
-  navigator.clipboard.writeText(fullText).then(()=>{
-    alert("✅ 已复制全部20组中英文提示词");
-  });
+let t="";
+all.forEach((p,i)=>{
+t+=`${i+1}. ${p.cn}\n${p.en}\n\n`;
+});
+navigator.clipboard.writeText(t).then(()=>alert("✅ 已复制全部"));
 }
 
-let allPrompts=[];
+function generate(){
 
-function generatePrompts(){
-  const industry=document.getElementById("industryInput").value.trim();
-  if(!industry){
-    alert("请输入行业类型");
-    return;
-  }
+let industry=document.getElementById("industry").value.trim();
+if(!industry){alert("请输入行业");return;}
 
-  const resultWrap=document.getElementById("resultWrap");
-  resultWrap.innerHTML="";
-  allPrompts=[];
-  let used=new Set();
+let size=document.getElementById("size").value;
+let scene=document.getElementById("scene").value;
+let color=document.getElementById("stoneColor").value;
 
-  while(allPrompts.length<20){
-    let p=createPrompt(industry);
-    let key=p.cn+p.en;
-    if(!used.has(key)){
-      used.add(key);
-      allPrompts.push(p);
-    }
-  }
+let used=new Set();
+all=[];
+let results=document.getElementById("results");
+results.innerHTML="";
 
-  let html="";
-  allPrompts.forEach((p,i)=>{
-    html+=`
-      <div class="result-item">
-        <div><strong>第${i+1}组</strong></div>
-        <div class="row">
-          <div class="col">
-            <div class="text">${p.cn}</div>
-            <button class="copy-btn" onclick="copyText(\`${p.cn}\`,this)">复制中文</button>
-          </div>
-          <div class="col">
-            <div class="text">${p.en}</div>
-            <button class="copy-btn" onclick="copyText(\`${p.en}\`,this)">Copy English</button>
-          </div>
-        </div>
-      </div>
-    `;
-  });
+while(all.length<20){
+let p=createPrompt(industry,size,scene,color);
+let key=p.cn+p.en;
+if(!used.has(key)){
+used.add(key);
+all.push(p);
+}
+}
 
-  html+=`<button class="copy-all-btn" onclick="copyAll()">📋 一键复制全部20组</button>`;
+let html="";
 
-  resultWrap.innerHTML=html;
+all.forEach((p,i)=>{
+html+=`
+<div class="result-item">
+<b>第${i+1}组</b>
+<div class="row">
+<div class="col">
+<div class="text">${p.cn}</div>
+<button class="copy-btn" onclick="copy(\`${p.cn}\`,this)">复制中文</button>
+</div>
+<div class="col">
+<div class="text">${p.en}</div>
+<button class="copy-btn" onclick="copy(\`${p.en}\`,this)">Copy English</button>
+</div>
+</div>
+</div>
+`;
+});
+
+html+=`<button class="copy-all" onclick="copyAll()">📋 一键复制全部20组</button>`;
+results.innerHTML=html;
+
 }
 
 </script>
