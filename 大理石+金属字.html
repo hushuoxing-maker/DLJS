@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>古月ai智能体·理石+金属字门头门头灵感库（双语版） 2.1</title>
+<title>古月ai智能体·理石+金属字门头门头灵感库（双语版）3.0</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft YaHei",sans-serif;}
@@ -11,15 +11,12 @@ body{
   padding:20px 0 60px;
 }
 .header{
-  background:linear-gradient(90deg,#0F172A,#1E293B);
+  background:linear-gradient(90deg,#111827,#1F2937);
   color:#fff;
   text-align:center;
   padding:40px 20px;
   margin-bottom:30px;
-  border-radius:0 0 16px 16px;
 }
-.header h1{font-size:26px;}
-
 .wrap{
   max-width:1000px;
   margin:0 auto 30px;
@@ -28,68 +25,53 @@ body{
   border-radius:16px;
   box-shadow:0 6px 20px rgba(0,0,0,0.05);
 }
-
 input,select{
   width:100%;
   padding:12px;
   margin-bottom:15px;
-  border:1px solid #E5E7EB;
+  border:1px solid #ddd;
   border-radius:8px;
-  font-size:14px;
 }
-
 button{
   padding:12px;
   border:none;
   border-radius:8px;
   cursor:pointer;
 }
-
 .gen-btn{
   width:100%;
-  background:#0F172A;
+  background:#111827;
   color:#fff;
-  font-size:15px;
 }
-
-.result-wrap{
+.result{
   max-width:1200px;
   margin:0 auto;
 }
-
-.result-item{
+.item{
   background:#fff;
   padding:18px;
   margin-bottom:14px;
   border-radius:12px;
   box-shadow:0 2px 10px rgba(0,0,0,0.05);
 }
-
 .row{display:flex;gap:20px;}
 .col{flex:1;}
-
-.text{
-  font-size:13px;
-  line-height:1.6;
-  color:#374151;
-}
-
+.text{font-size:13px;line-height:1.6;}
 .copy-btn{
   margin-top:8px;
-  background:#0F172A;
+  background:#111827;
   color:#fff;
   font-size:12px;
 }
 .copy-btn.copied{
   background:#ccc !important;
   color:#666 !important;
-  cursor:default !important;
+  cursor:default;
 }
-
 .copy-all{
   display:block;
   margin:25px auto;
-  background:#0F172A;
+  background:#111827;
   color:#fff;
 }
 </style>
@@ -98,66 +80,100 @@ button{
 <body>
 
 <div class="header">
-<h1>🪨 古月ai智能体·理石+金属字门头门头灵感库（双语版）</h1>
+<h1>🏢 古月ai智能体·理石+金属字门头门头灵感库（双语版） 3.0</h1>
 </div>
 
 <div class="wrap">
 
-<input id="industry" placeholder="请输入行业，例如：高端餐饮、珠宝、商务会所">
-
-<select id="size">
-<option value="小型街边店铺">小型街边店铺</option>
-<option value="中型沿街门店">中型沿街门店</option>
-<option value="大型旗舰店">大型旗舰店</option>
-<option value="商业综合体主入口">商业综合体主入口</option>
-</select>
+<input id="industry" placeholder="请输入行业，例如：高端餐饮、珠宝、民宿">
 
 <select id="scene">
 <option value="白天自然光">白天自然光</option>
 <option value="夜景灯光效果">夜景灯光效果</option>
 </select>
 
-<select id="stoneColor">
-<option value="浅灰色大理石">浅灰色大理石</option>
-<option value="深灰色大理石">深灰色大理石</option>
-<option value="黑色大理石">黑色大理石</option>
-<option value="米色大理石">米色大理石</option>
-</select>
-
-<button class="gen-btn" onclick="generate()">🚀 生成20组中英文提示词</button>
+<button class="gen-btn" onclick="generate()">🚀 生成20组完全不同提示词</button>
 
 </div>
 
-<div class="result-wrap" id="results"></div>
+<div class="result" id="result"></div>
 
 <script>
 
-const metalCN=["拉丝不锈钢字","黄铜金属字","黑钛金属字","镜面不锈钢字"];
-const metalEN=["brushed stainless steel letters","brass metal letters","black titanium letters","mirror-finish stainless steel letters"];
-
-const lightingCN=["洗墙灯设计","背光氛围灯","隐藏灯带","顶部射灯"];
-const lightingEN=["wall washer lighting","backlit ambient lighting","concealed LED strip lighting","overhead spot lighting"];
-
-const styleCN=["高端稳重风格","现代极简风格","商务沉稳风格","奢雅质感风格"];
-const styleEN=["premium and steady style","modern minimalist style","business-oriented calm style","luxury elegant texture style"];
-
-const sloganCN=["主营品类+高端质感标语","核心产品+品牌表达","招牌项目+精致文字","品牌定位+大气视觉"];
-const sloganEN=["main category with premium slogan","core product with brand expression","signature project with refined typography","brand positioning with grand visual identity"];
+const materials=["大理石立面","天然石材干挂","木饰面结合石材","金属格栅结构","混合材质立面"];
+const metals=["拉丝不锈钢字","黄铜立体字","黑钛金属字","背发光金属字"];
+const compositions=["中轴对称构图","横向延展比例构图","垂直比例强化构图","现代建筑立面分割","商业街区完整界面展示"];
+const lighting=["洗墙灯光系统","隐藏灯带设计","线性轮廓光","立体背光系统"];
+const styles=["现代极简","高端质感","商业旗舰风格","建筑感强化","设计师定制风格"];
 
 function r(arr){return arr[Math.floor(Math.random()*arr.length)];}
 
-function createPrompt(industry,size,scene,color){
-
-const cn=`${scene}，店铺正立面完全展示，正面平视无遮挡，${size}，${industry}店铺门头设计，${color}搭配${r(metalCN)}，${r(styleCN)}，${r(lightingCN)}，品牌名称清晰立体，${r(sloganCN)}，8K高清写实效果图，可直接施工参考`;
-
-const en=`${scene==="白天自然光"?"Daytime natural lighting":"Night scene lighting effect"}, storefront fully displayed in front elevation, eye-level orthographic view, unobstructed facade composition, ${size}, ${industry} storefront design, ${color} combined with ${r(metalEN)}, ${r(styleEN)}, ${r(lightingEN)}, clearly defined three-dimensional brand signage, ${r(sloganEN)}, 8K ultra-high-definition photorealistic render, construction-ready reference`;
-
-return {cn,en};
+function template1(industry,scene){
+return `${scene}，店铺正立面完全展示，无遮挡无裁切，${industry}店铺门头设计，采用${r(materials)}与${r(metals)}结合，${r(compositions)}，${r(styles)}，8K高清写实效果图`;
 }
 
+function template2(industry,scene){
+return `完整展示${industry}商业门头立面，正面平视视角，${scene}环境，强调${r(compositions)}与${r(lighting)}，主材为${r(materials)}，品牌字体采用${r(metals)}，商业建筑可施工级效果`;
+}
+
+function template3(industry,scene){
+return `${industry}店铺建筑外立面设计方案，${scene}光影环境，正立面无遮挡呈现，立面比例精准控制，使用${r(materials)}，搭配${r(metals)}，整体呈现${r(styles)}表达，8K超清渲染`;
+}
+
+function template4(industry,scene){
+return `商业建筑立面效果图，${industry}门头完整展示，无透视畸变，${r(compositions)}，材料组合为${r(materials)}+${r(metals)}，光环境采用${r(lighting)}，${scene}氛围，施工级精细表达`;
+}
+
+function template5(industry,scene){
+return `建筑正立面视图，${industry}品牌店铺，完整外立面展示，无任何遮挡元素，${r(styles)}定位，核心材料${r(materials)}，标识系统使用${r(metals)}，${scene}光照条件，商业级写实表现`;
+}
+
+function generate(){
+
+let industry=document.getElementById("industry").value.trim();
+if(!industry){alert("请输入行业");return;}
+
+let scene=document.getElementById("scene").value;
+
+let templates=[template1,template2,template3,template4,template5];
+
+let result=document.getElementById("result");
+result.innerHTML="";
+let used=new Set();
 let all=[];
 
-function copy(text,btn){
+while(all.length<20){
+let t=r(templates);
+let text=t(industry,scene);
+if(!used.has(text)){
+used.add(text);
+all.push(text);
+}
+}
+
+let html="";
+all.forEach((p,i)=>{
+html+=`
+<div class="item">
+<b>第${i+1}组</b>
+<div class="row">
+<div class="col">
+<div class="text">${p}</div>
+<button class="copy-btn" onclick="copyText(\`${p}\`,this)">复制</button>
+</div>
+</div>
+</div>
+`;
+});
+
+html+=`<button class="copy-all" onclick="copyAll()">📋 一键复制全部</button>`;
+result.innerHTML=html;
+
+window.allPrompts=all;
+
+}
+
+function copyText(text,btn){
 navigator.clipboard.writeText(text).then(()=>{
 btn.classList.add("copied");
 btn.innerText="已复制";
@@ -166,58 +182,10 @@ btn.innerText="已复制";
 
 function copyAll(){
 let t="";
-all.forEach((p,i)=>{
-t+=`${i+1}. ${p.cn}\n${p.en}\n\n`;
+window.allPrompts.forEach((p,i)=>{
+t+=`${i+1}. ${p}\n\n`;
 });
-navigator.clipboard.writeText(t).then(()=>alert("✅ 已复制全部20组"));
-}
-
-function generate(){
-
-let industry=document.getElementById("industry").value.trim();
-if(!industry){alert("请输入行业");return;}
-
-let size=document.getElementById("size").value;
-let scene=document.getElementById("scene").value;
-let color=document.getElementById("stoneColor").value;
-
-let used=new Set();
-all=[];
-let results=document.getElementById("results");
-results.innerHTML="";
-
-while(all.length<20){
-let p=createPrompt(industry,size,scene,color);
-let key=p.cn+p.en;
-if(!used.has(key)){
-used.add(key);
-all.push(p);
-}
-}
-
-let html="";
-
-all.forEach((p,i)=>{
-html+=`
-<div class="result-item">
-<b>第${i+1}组</b>
-<div class="row">
-<div class="col">
-<div class="text">${p.cn}</div>
-<button class="copy-btn" onclick="copy(\`${p.cn}\`,this)">复制中文</button>
-</div>
-<div class="col">
-<div class="text">${p.en}</div>
-<button class="copy-btn" onclick="copy(\`${p.en}\`,this)">Copy English</button>
-</div>
-</div>
-</div>
-`;
-});
-
-html+=`<button class="copy-all" onclick="copyAll()">📋 一键复制全部20组</button>`;
-results.innerHTML=html;
-
+navigator.clipboard.writeText(t).then(()=>alert("已复制全部"));
 }
 
 </script>
