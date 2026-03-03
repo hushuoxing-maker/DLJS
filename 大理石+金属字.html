@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>古月AI智能体 · 大理石+金属字门头灵感库 5.0 旗舰版</title>
+<title>古月AI智能体 · 理石+金属字门头灵感库 5.1 旗舰版</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft YaHei",sans-serif;}
@@ -104,7 +104,7 @@ button{
 <body>
 
 <div class="header">
-<h1>古月AI智能体 · 大理石+金属字门头灵感库 5.0 旗舰版</h1>
+<h1>古月AI智能体 · 理石+金属字门头灵感库 5.1 旗舰版</h1>
 </div>
 
 <div class="wrap">
@@ -125,7 +125,6 @@ button{
 <div class="result" id="result"></div>
 
 <script>
-
 const scales=["小型精致店铺","标准中型商业空间","大型城市旗舰店","双层挑高门头","横向超长立面"];
 const environments=["商业街区独栋","商场外立面界面","高端社区底商","城市主干道沿街建筑"];
 const materials=["天然大理石干挂","奢石拼接立面","深色石材整体包覆","浅色石材与金属嵌合结构"];
@@ -136,16 +135,12 @@ const photo=["HDR高动态范围","超清建筑摄影","电影级光影质感","
 function r(a){return a[Math.floor(Math.random()*a.length)];}
 
 function buildPrompt(brand,industry,scene){
-
-let zh=`${scene}下，${brand}${industry}门头设计方案，${r(scales)}，位于${r(environments)}，完整展示店铺正立面无遮挡，立面主材采用${r(materials)}，品牌标识为${r(metals)}，强调比例与建筑秩序，${r(lenses)}拍摄，${r(photo)}，8K超清效果图`;
-
-let en=`Under ${scene}, facade concept for ${brand} ${industry}, ${r(scales)} scale, located within ${r(environments)}, full front elevation completely visible, finished with ${r(materials)}, signage crafted in ${r(metals)}, emphasizing architectural proportion and order, shot using ${r(lenses)}, ${r(photo)}, ultra-realistic 8K render`;
-
+let zh=`${scene}下，${brand}${industry}门头设计方案，${r(scales)}，位于${r(environments)}，**店铺正立面完全展示**无遮挡，立面主材采用${r(materials)}，品牌标识为${r(metals)}，强调比例与建筑秩序，${r(lenses)}拍摄，${r(photo)}，8K超清效果图`;
+let en=`Under ${scene}, facade concept for ${brand} ${industry}, ${r(scales)} scale, located within ${r(environments)}, **full front elevation completely visible**, finished with ${r(materials)}, signage crafted in ${r(metals)}, emphasizing architectural proportion and order, shot using ${r(lenses)}, ${r(photo)}, ultra-realistic 8K render`;
 return {zh,en};
 }
 
 function generate(){
-
 let brand=document.getElementById("brand").value.trim()||"某品牌";
 let industry=document.getElementById("industry").value.trim();
 if(!industry){alert("请输入行业");return;}
