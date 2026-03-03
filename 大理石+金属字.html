@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>古月ai智能体·理石+金属字门头门头灵感库（双语版） 2.0</title>
+<title>古月ai智能体·理石+金属字门头门头灵感库（双语版） 2.1</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft YaHei",sans-serif;}
@@ -98,7 +98,7 @@ button{
 <body>
 
 <div class="header">
-<h1>🪨 古月ai智能体·理石+金属字门头门头灵感库（双语版） 2.0</h1>
+<h1>🪨 古月ai智能体·理石+金属字门头门头灵感库（双语版）</h1>
 </div>
 
 <div class="wrap">
@@ -133,24 +133,24 @@ button{
 <script>
 
 const metalCN=["拉丝不锈钢字","黄铜金属字","黑钛金属字","镜面不锈钢字"];
-const metalEN=["Brushed stainless letters","Brass metal letters","Black titanium letters","Mirror stainless letters"];
+const metalEN=["brushed stainless steel letters","brass metal letters","black titanium letters","mirror-finish stainless steel letters"];
 
 const lightingCN=["洗墙灯设计","背光氛围灯","隐藏灯带","顶部射灯"];
-const lightingEN=["Wall washer lighting","Backlit ambient light","Hidden LED strip","Top spotlights"];
+const lightingEN=["wall washer lighting","backlit ambient lighting","concealed LED strip lighting","overhead spot lighting"];
 
 const styleCN=["高端稳重风格","现代极简风格","商务沉稳风格","奢雅质感风格"];
-const styleEN=["Premium steady style","Modern minimalist style","Business calm style","Luxury elegant style"];
+const styleEN=["premium and steady style","modern minimalist style","business-oriented calm style","luxury elegant texture style"];
 
 const sloganCN=["主营品类+高端质感标语","核心产品+品牌表达","招牌项目+精致文字","品牌定位+大气视觉"];
-const sloganEN=["Main category + premium slogan","Core product + brand expression","Signature project + refined text","Brand positioning + grand visual"];
+const sloganEN=["main category with premium slogan","core product with brand expression","signature project with refined typography","brand positioning with grand visual identity"];
 
 function r(arr){return arr[Math.floor(Math.random()*arr.length)];}
 
 function createPrompt(industry,size,scene,color){
 
-const cn=`${scene}，门头正立面完全展示，正面平视无遮挡，${size}，${industry}店铺门头设计，${color}搭配${r(metalCN)}，${r(styleCN)}，${r(lightingCN)}，品牌名称清晰立体，${r(sloganCN)}，8K高清写实效果图，可直接施工参考`;
+const cn=`${scene}，店铺正立面完全展示，正面平视无遮挡，${size}，${industry}店铺门头设计，${color}搭配${r(metalCN)}，${r(styleCN)}，${r(lightingCN)}，品牌名称清晰立体，${r(sloganCN)}，8K高清写实效果图，可直接施工参考`;
 
-const en=`${scene==="白天自然光"?"Daytime natural lighting":"Night scene lighting effect"}, front facade fully displayed, eye-level unobstructed view, ${size}, ${industry} storefront design, ${color} combined with ${r(metalEN)}, ${r(styleEN)}, ${r(lightingEN)}, clear 3D brand signage, ${r(sloganEN)}, 8K ultra HD realistic render, construction-ready reference`;
+const en=`${scene==="白天自然光"?"Daytime natural lighting":"Night scene lighting effect"}, storefront fully displayed in front elevation, eye-level orthographic view, unobstructed facade composition, ${size}, ${industry} storefront design, ${color} combined with ${r(metalEN)}, ${r(styleEN)}, ${r(lightingEN)}, clearly defined three-dimensional brand signage, ${r(sloganEN)}, 8K ultra-high-definition photorealistic render, construction-ready reference`;
 
 return {cn,en};
 }
@@ -169,7 +169,7 @@ let t="";
 all.forEach((p,i)=>{
 t+=`${i+1}. ${p.cn}\n${p.en}\n\n`;
 });
-navigator.clipboard.writeText(t).then(()=>alert("✅ 已复制全部"));
+navigator.clipboard.writeText(t).then(()=>alert("✅ 已复制全部20组"));
 }
 
 function generate(){
@@ -223,4 +223,3 @@ results.innerHTML=html;
 </script>
 </body>
 </html>
-
